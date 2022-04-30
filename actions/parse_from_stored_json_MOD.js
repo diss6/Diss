@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Parse From Stored Json',
   section: 'JSON Things',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/parse_from_stored_json_MOD.js',
-  },
 
   subtitle(data) {
     return `${data.varName}`;
@@ -88,7 +81,7 @@ module.exports = {
     glob.refreshVariableList(document.getElementById('storage'));
   },
 
-  async action(cache) {
+  action(cache) {
     const Mods = this.getMods();
     const data = cache.actions[cache.index];
     const varName = this.evalMessage(data.varName, cache);

@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Read File',
   section: 'File Stuff',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/read_file_MOD.js',
-  },
 
   subtitle(data) {
     return `Read File "${data.filename}"`;
@@ -44,7 +37,7 @@ module.exports = {
 
   init() {},
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const { readFileSync } = require('fs');
     const path = this.evalMessage(data.filename, cache);

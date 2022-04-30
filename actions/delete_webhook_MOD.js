@@ -2,13 +2,6 @@
 module.exports = {
   name: 'Delete Webhook',
   section: 'Webhook Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/delete_webhook_MOD.js',
-  },
 
   subtitle(data) {
     const names = ['You cheater!', 'Temp Variable', 'Server Variable', 'Global Variable'];
@@ -36,7 +29,7 @@ module.exports = {
     glob.refreshVariableList(document.getElementById('webhook'));
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const storage = parseInt(data.webhook, 10);
     const varName = this.evalMessage(data.varName, cache);

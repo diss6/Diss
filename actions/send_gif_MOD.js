@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Send GIF',
   section: 'Image Editing',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/send_gif_MOD.js',
-  },
 
   subtitle(data) {
     const channels = [
@@ -65,7 +58,7 @@ module.exports = {
     glob.sendTargetChange(document.getElementById('channel'), 'varNameContainer2');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const storage = parseInt(data.storage, 10);
     const varName = this.evalMessage(data.varName, cache);

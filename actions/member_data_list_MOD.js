@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Store Member Data List',
   section: 'Member Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/member_data_list_MOD.js',
-  },
 
   subtitle(data) {
     return `${[data.dataName]}`;
@@ -108,7 +101,7 @@ module.exports = {
     glob.onChange1(document.getElementById('numbefstselect'));
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const { msg } = cache;
     const storage = parseInt(data.storage, 10);

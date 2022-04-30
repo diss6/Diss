@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Store Message Params',
   section: 'Messaging',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/store_message_params_MOD.js',
-  },
 
   subtitle(data) {
     const message = ['Command Message', 'Temp Variable', 'Server Variable', 'Global Variable'];
@@ -186,11 +179,11 @@ module.exports = {
     glob.onChange1(document.getElementById('info'));
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const message = parseInt(data.message, 10);
     const varName = this.evalMessage(data.varName, cache);
-    const msg = await this.getMessage(message, varName, cache);
+    const msg = this.getMessage(message, varName, cache);
     const count = this.evalMessage(data.count, cache);
 
     if (!msg) {

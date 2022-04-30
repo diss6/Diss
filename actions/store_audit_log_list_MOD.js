@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Store Audit Log List MOD',
   section: 'Server Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/store_audit_log_list_MOD.js',
-  },
 
   subtitle(data) {
     const storage = ['All Member', 'Mentioned User', 'Command Author', 'tempVars', 'serverVars', 'globalVars'];
@@ -172,7 +165,7 @@ module.exports = {
     glob.onChange0(document.getElementById('storage'));
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const { server } = cache;
     const member = parseInt(data.storage, 10);
@@ -185,7 +178,7 @@ module.exports = {
         break;
       default: {
         const varName = this.evalMessage(data.varName, cache);
-        mem = await this.getMember(member - 1, varName, cache);
+        mem = this.getMember(member - 1, varName, cache);
         break;
       }
     }

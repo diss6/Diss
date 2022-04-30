@@ -2,13 +2,6 @@ module.exports = {
   name: 'Get Bot Stats From DBXYZ',
   displayName: 'Get Bot Stats From Discord Boats',
   section: 'Other Stuff',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/get_stats_from_dbxyz_MOD.js',
-  },
 
   subtitle(data) {
     const info = [
@@ -143,7 +136,7 @@ module.exports = {
     glob.variableChange(document.getElementById('storage'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const botID = this.evalMessage(data.botID, cache);
     const info = parseInt(data.info, 10);

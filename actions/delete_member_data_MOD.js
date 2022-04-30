@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Delete Member Data',
   section: 'Data',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/delete_member_data_MOD.js',
-  },
 
   subtitle(data) {
     const members = ['Mentioned User', 'Command Author', 'Temp Variable', 'Server Variable', 'Global Variable'];
@@ -43,11 +36,11 @@ module.exports = {
     glob.memberChange(document.getElementById('member'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const type = parseInt(data.member, 10);
     const varName = this.evalMessage(data.varName, cache);
-    const member = await this.getMember(type, varName, cache);
+    const member = this.getMember(type, varName, cache);
     const dataName = this.evalMessage(data.dataName, cache);
 
     member.delData(dataName);
@@ -55,32 +48,42 @@ module.exports = {
   },
 
   mod(DBM) {
-    Reflect.defineProperty(DBM.DiscordJS.GuildMember.prototype, 'delData', {
-      value(name) {
-        const { players } = DBM.Files.data;
+    DBM.Actions['Delete Member Data MOD'] = DBM.Actions['Delete Member Data'];
+    DBM.DiscordJS.Structures.extend(
+      'GuildMember',
+      (GuildMember) =>
+        class extends GuildMember {
+          constructor(client, data, guild) {
+            super(client, data, guild);
+          }
 
-        if (name && players[this.id]?.[name]) {
-          delete players[this.id][name];
-          DBM.Files.saveData('players');
-        } else if (!name) {
-          delete players[this.id];
-          DBM.Files.saveData('players');
-        }
-      },
-    });
-
-    Reflect.defineProperty(DBM.DiscordJS.User.prototype, 'delData', {
-      value(name) {
-        const { players } = DBM.Files.data;
-
-        if (name && players[this.id]?.[name]) {
-          delete players[this.id][name];
-          DBM.Files.saveData('players');
-        } else if (!name) {
-          delete players[this.id];
-          DBM.Files.saveData('players');
-        }
-      },
-    });
+          delData(name) {
+            const { players } = DBM.Files.data;
+            if (players[this.id] && name && players[this.id][name]) {
+              delete players[this.id][name];
+              DBM.Files.saveData('players');
+            } else if (!name) {
+              delete players[this.id];
+              DBM.Files.saveData('players');
+            }
+          }
+        },
+    );
+    DBM.DiscordJS.Structures.extend(
+      'User',
+      (User) =>
+        class extends User {
+          delData(name) {
+            const { players } = DBM.Files.data;
+            if (players[this.id] && name && players[this.id][name]) {
+              delete players[this.id][name];
+              DBM.Files.saveData('players');
+            } else if (!name) {
+              delete players[this.id];
+              DBM.Files.saveData('players');
+            }
+          }
+        },
+    );
   },
 };

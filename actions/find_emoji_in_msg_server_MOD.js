@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Find Custom Emoji in Current Server',
   section: 'Emoji Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/find_emoji_in_msg_server_MOD.js',
-  },
 
   subtitle(data) {
     const info = ['Emoji ID', 'Emoji Name'];
@@ -52,7 +45,7 @@ module.exports = {
 
   init() {},
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const { server } = cache;
     const info = parseInt(data.info, 10);

@@ -2,13 +2,6 @@ module.exports = {
   name: 'Send Mail',
 
   section: 'Other Stuff',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/send_mail_MOD.js',
-  },
 
   subtitle(data) {
     return `from:"${data.username}" to: "${data.mailto}"`;
@@ -121,7 +114,7 @@ module.exports = {
     glob.onChangeFalse(document.getElementById('iffalse'));
   },
 
-  async action(cache) {
+  action(cache) {
     const { Actions } = this.getDBM();
     const data = cache.actions[cache.index];
     const user = this.evalMessage(data.username, cache);

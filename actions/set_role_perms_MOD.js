@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Set Role Permissions',
   section: 'Role Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/set_role_perms_MOD.js',
-  },
 
   subtitle(data) {
     const roles = [
@@ -129,11 +122,11 @@ module.exports = {
     glob.roleChange(document.getElementById('role'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const storage = parseInt(data.role, 10);
     const varName = this.evalMessage(data.varName, cache);
-    const role = await this.getRole(storage, varName, cache);
+    const role = this.getRole(storage, varName, cache);
     const info = parseInt(data.permission, 10);
     const reason = this.evalMessage(data.reason, cache);
 

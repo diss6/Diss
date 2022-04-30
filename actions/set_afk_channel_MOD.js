@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Set AFK Channel',
   section: 'Server Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/set_afk_channel_MOD.js',
-  },
 
   subtitle(data) {
     const channels = [
@@ -92,14 +85,14 @@ module.exports = {
     glob.voiceChannelChange(document.getElementById('afkchannel'), 'varNameContainerr');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const type = parseInt(data.server, 10);
     const afkchannel = parseInt(data.afkchannel, 10);
     const varName2 = this.evalMessage(data.varNameChannel, cache);
     const varName = this.evalMessage(data.varName, cache);
-    const server = await this.getServer(type, varName, cache);
-    const channel = await this.getVoiceChannel(afkchannel, varName2, cache);
+    const server = this.getServer(type, varName, cache);
+    const channel = this.getVoiceChannel(afkchannel, varName2, cache);
 
     if (!channel) return this.callNextAction(cache);
 

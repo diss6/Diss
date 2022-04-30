@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Leave Server',
   section: 'Bot Client Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/leave_server_MOD.js',
-  },
 
   subtitle() {
     return 'Leaves a server';
@@ -36,11 +29,11 @@ module.exports = {
     glob.serverChange(document.getElementById('server'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const type = parseInt(data.server, 10);
     const varName = this.evalMessage(data.varName, cache);
-    const server = await this.getServer(type, varName, cache);
+    const server = this.getServer(type, varName, cache);
 
     if (Array.isArray(server)) {
       this.callListFunc(server, 'leave').then(() => {

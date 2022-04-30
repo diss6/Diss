@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Delete Server',
   section: 'Server Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/delete_server_MOD.js',
-  },
 
   subtitle(data) {
     const servers = ['Current Server', 'Temp Variable', 'Server Variable', 'Global Variable'];
@@ -38,11 +31,11 @@ module.exports = {
     glob.serverChange(document.getElementById('server'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const server = parseInt(data.server, 10);
     const varName = this.evalMessage(data.varName, cache);
-    const targetServer = await this.getServer(server, varName, cache);
+    const targetServer = this.getServer(server, varName, cache);
 
     if (Array.isArray(targetServer)) {
       this.callListFunc(targetServer, 'delete', []).then(() => {

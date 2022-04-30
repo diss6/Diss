@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Slice',
   section: 'Other Stuff',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/slice_MOD.js',
-  },
 
   subtitle() {
     return 'Slice anything!';
@@ -58,7 +51,7 @@ module.exports = {
     glob.variableChange(document.getElementById('storage'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const type = parseInt(data.storage, 10);
     const varName = this.evalMessage(data.varName, cache);

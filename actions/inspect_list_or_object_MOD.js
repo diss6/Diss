@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Inspect List/Object',
   section: 'Lists and Loops',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/inspect_list_or_object_MOD.js',
-  },
 
   subtitle(data) {
     const storages = ['', 'Temp Variable', 'Server Variable', 'Global Variable'];
@@ -102,7 +95,7 @@ module.exports = {
     glob.variableChange(document.getElementById('storage'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
 
     const Mods = this.getMods();

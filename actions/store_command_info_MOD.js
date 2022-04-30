@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Store Command Info',
   section: 'Bot Client Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/store_command_info_MOD.js',
-  },
 
   subtitle(data) {
     const info = [
@@ -103,7 +96,7 @@ module.exports = {
     glob.onChangeSame(document.getElementById('searchCommandBy'));
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const jp = this.getMods().require('jsonpath');
 

@@ -1,18 +1,10 @@
 module.exports = {
   name: 'Sends Stats to DBL',
-  displayname: 'Sends Stats to TopGG',
   section: 'Other Stuff',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/send_stats_to_dbl_MOD.js',
-  },
 
   subtitle(data) {
     const info = ['Only Server Count', 'Shard & Server Count'];
-    return `Send ${info[parseInt(data.info, 10)]} to TopGG!`;
+    return `Send ${info[parseInt(data.info, 10)]} to DBL!`;
   },
 
   fields: ['dblToken', 'info'],
@@ -21,7 +13,7 @@ module.exports = {
     return `
 <div id="modinfo">
   <div style="float: left; width: 99%; padding-top: 8px;">
-    Your TopGG Token:<br>
+    Your DBL Token:<br>
     <input id="dblToken" class="round" type="text">
   </div><br>
   <div style="float: left; width: 90%; padding-top: 8px;">

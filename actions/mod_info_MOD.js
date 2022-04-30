@@ -1,16 +1,11 @@
 module.exports = {
   name: 'Welcome',
-  section: '#DBM Mods',
+  section: '#Mod Information',
   version: '1.9.8',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/mod_info_MOD.js',
-  },
 
-  subtitle() {},
+  subtitle() {
+    return 'Put this into a Bot Initialization event for music!';
+  },
 
   fields: ['mods'],
 
@@ -185,7 +180,7 @@ span.discord_code_blocks {
     Visit us on GitHub! The whole mod collection is on GitHub
     and everyone is invited to join us developing new mods!<br>
     Copy and paste the link to view the site in your browser.<br>
-    <span class="wrexlink3" data-url3="https://github.com/dbm-network/mods">https://github.com/dbm-network/mods</span><br>
+    <span class="wrexlink3" data-url3="https://github.com/Discord-Bot-Maker-Mods/DBM-Mods">https://github.com/Discord-Bot-Maker-Mods/DBM-Mods</span><br>
   </p>
 
   <h3 style="color: #fff">Current List of Mods</h3>
@@ -214,7 +209,7 @@ span.discord_code_blocks {
       require('fs')
         .readdirSync(__dirname)
         .forEach((file) => {
-          if (file.match(/MOD.js/i)) {
+          if (/MOD.js/i.exec(file)) {
             const action = require(path.join(__dirname, file));
             if (action.name && action.action !== null) {
               const tr = document.createElement('tr');
@@ -286,7 +281,12 @@ span.discord_code_blocks {
     }
   },
 
-  action() {},
+  action() {
+    console.log('Music functions successfully overwritten.');
+  },
 
-  mod() {},
+  mod(DBM) {
+    const Mods = DBM.Actions.getMods();
+    Mods.setupMusic(DBM);
+  },
 };

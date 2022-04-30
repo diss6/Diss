@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Urban Dictionary Search',
   section: 'Other Stuff',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/urban_dictionary_MOD.js',
-  },
 
   subtitle(data) {
     const info = [
@@ -93,7 +86,7 @@ module.exports = {
     glob.variableChange(document.getElementById('storage'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const info = parseInt(data.info, 10);
     const string = this.evalMessage(data.string, cache);

@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Randomize Letters',
   section: 'Other Stuff',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/randomize_letters_MOD.js',
-  },
 
   subtitle(data) {
     return `Randomize [${data.input}]`;
@@ -59,7 +52,7 @@ module.exports = {
     glob.variableChange(document.getElementById('storage'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const Input = this.evalMessage(data.input, cache);
     const wordLength = this.evalMessage(data.wordLength, cache);

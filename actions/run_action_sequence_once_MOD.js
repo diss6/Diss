@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Run Action Sequence Once',
   section: 'Other Stuff',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/run_action_sequence_once_MOD.js',
-  },
 
   subtitle(data) {
     return `Run Once ${data.behavior === '2' ? 'Per Server' : 'Globally'}`;
@@ -41,7 +34,7 @@ module.exports = {
 
   init() {},
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const behavior = parseInt(data.behavior, 10);
 

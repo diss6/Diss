@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Run SQL Query',
   section: 'Other Stuff',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/run_sql_query_MOD.js',
-  },
 
   variableStorage(data, varType) {
     if (parseInt(data.storage, 10) !== varType) return;
@@ -344,7 +337,7 @@ module.exports = {
     glob.variableChange(document.getElementById('store_source_conn_storage'), 'varNameContainer3');
   },
 
-  async action(cache) {
+  action(cache) {
     // fields: ["storage", "varName", "hostname", "port", "username", "password", "database", "query", "otype",
     // "source_conn_storage", "storage_conn_varName", "store_source_conn_storage", "store_storage_conn_varName", "debugMode"],
 
@@ -466,9 +459,9 @@ module.exports = {
                 if (results && path !== undefined) {
                   jsonOut = Mods.jsonPath(results, path);
                   // if it failed and if they didn't the required initial object, add it for them
-                  if (jsonOut === false) jsonOut = Mods.jsonPath(results, '$.'.concat(path));
+                  if (!jsonOut) jsonOut = Mods.jsonPath(results, '$.'.concat(path));
                   // if it failed still, try just pulling the first object
-                  if (jsonOut === false) jsonOut = Mods.jsonPath(results, '$.[0].'.concat(path));
+                  if (!jsonOut) jsonOut = Mods.jsonPath(results, '$.[0].'.concat(path));
                   if (jsonOut) {
                     if (jsonOut.length === 1) jsonOut = jsonOut[0];
                     if (DEBUG)

@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Find Reaction',
   section: 'Reaction Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/find_reaction_MOD.js',
-  },
 
   subtitle(data) {
     return `${data.find}`;
@@ -66,11 +59,11 @@ module.exports = {
     glob.messageChange(document.getElementById('message'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const message = parseInt(data.message, 10);
     const varName = this.evalMessage(data.varName, cache);
-    const msg = await this.getMessage(message, varName, cache);
+    const msg = this.getMessage(message, varName, cache);
     const info = parseInt(data.info, 10);
     const emoji = this.evalMessage(data.find, cache);
 

@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Sync Channel Permissions',
   section: 'Permission Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/sync_channel_permissions_MOD.js',
-  },
 
   subtitle(data) {
     const names = [
@@ -45,12 +38,12 @@ module.exports = {
     glob.channelChange(document.getElementById('storage'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const { server } = cache;
     const storage = parseInt(data.storage, 10);
     const varName = this.evalMessage(data.varName, cache);
-    const channel = await this.getChannel(storage, varName, cache);
+    const channel = this.getChannel(storage, varName, cache);
 
     if (!server) return this.callNextAction(cache);
     if (!channel.parent) return this.callNextAction(cache);

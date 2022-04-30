@@ -2,13 +2,6 @@ module.exports = {
   name: 'Store Attachment Info',
   section: 'Messaging',
   fields: ['storage', 'varName', 'info', 'storage2', 'varName2'],
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/store_attachment_info_MOD.js',
-  },
 
   subtitle({ info }) {
     const names = [
@@ -70,14 +63,14 @@ module.exports = {
     glob.variableChange(document.getElementById('storage2'), 'varNameContainer2');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const storage = parseInt(data.storage, 10);
     const varName = this.evalMessage(data.varName, cache);
-    const message = await this.getMessage(storage, varName, cache);
+    const message = this.getMessage(storage, varName, cache);
     const info = parseInt(data.info, 10);
 
-    const attachments = [...message.attachments.values()];
+    const attachments = message.attachments.array();
 
     if (attachments.length > 0) {
       const attachment = attachments[0];

@@ -1,21 +1,13 @@
 module.exports = {
   name: 'Find Webhook',
   section: 'Webhook Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/find_webhook_MOD.js',
-  },
 
   subtitle(data) {
     return `${data.id}`;
   },
 
   variableStorage(data, varType) {
-    const type = parseInt(data.storage, 10);
-    if (type !== varType) return;
+    if (parseInt(data.storage, 10) !== varType) return;
     return [data.varName, 'Webhook'];
   },
 
@@ -49,22 +41,18 @@ module.exports = {
 
   init() {},
 
-  async action(cache) {
+  action(cache) {
     const { DiscordJS } = this.getDBM();
     const data = cache.actions[cache.index];
     const id = this.evalMessage(data.id, cache);
     const token = this.evalMessage(data.token, cache);
+    const result = new DiscordJS.WebhookClient(id, token);
 
-    const result = new DiscordJS.WebhookClient({ id, token });
-
-    if (!result) {
-      console.log('Find Webhook: There was an issue creating the webhook object.');
-      return this.callNextAction(cache);
+    if (result !== undefined) {
+      const storage = parseInt(data.storage, 10);
+      const varName = this.evalMessage(data.varName, cache);
+      this.storeValue(result, storage, varName, cache);
     }
-
-    const storage = parseInt(data.storage, 10);
-    const varName = this.evalMessage(data.varName, cache);
-    this.storeValue(result, storage, varName, cache);
     this.callNextAction(cache);
   },
 

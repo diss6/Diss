@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Jump to Action',
   section: 'Other Stuff',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/jump_to_action_MOD.js',
-  },
 
   subtitle(data) {
     return `Jump to action ${typeof data.call === 'number' ? '#' : `${data.call}`}`;
@@ -27,7 +20,7 @@ module.exports = {
 
   init() {},
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const val = parseInt(this.evalMessage(data.call, cache), 10);
     const index = Math.max(val - 1, 0);

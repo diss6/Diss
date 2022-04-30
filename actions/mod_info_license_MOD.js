@@ -1,13 +1,6 @@
 module.exports = {
   name: 'License',
-  section: '#DBM Mods',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/mod_info_license_MOD.js',
-  },
+  section: '#Mod Information',
 
   subtitle() {
     return 'Does nothing - Click "Edit" for more information';

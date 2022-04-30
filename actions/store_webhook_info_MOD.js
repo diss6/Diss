@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Store Webhook Info',
   section: 'Webhook Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/store_webhook_info_MOD.js',
-  },
 
   subtitle(data) {
     const info = ['Webhook ', 'Webhook ', 'Webhook ', 'Webhook ', 'Webhook ', 'Webhook ', 'Webhook ', 'Webhook '];
@@ -93,7 +86,7 @@ module.exports = {
     glob.refreshVariableList(document.getElementById('webhook'));
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const webhook = parseInt(data.webhook, 10);
     const varName = this.evalMessage(data.varName, cache);

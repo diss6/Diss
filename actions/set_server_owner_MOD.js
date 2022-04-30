@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Set Server Owner',
   section: 'Server Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/set_server_owner_MOD.js',
-  },
 
   subtitle(data) {
     const members = ['Mentioned User', 'Command Author', 'Temp Variable', 'Server Variable', 'Global Variable'];
@@ -57,16 +50,16 @@ module.exports = {
     glob.memberChange(document.getElementById('member'), 'varNameContainer2');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
 
     const type = parseInt(data.server, 10);
     const varName = this.evalMessage(data.varName, cache);
-    const server = await this.getServer(type, varName, cache);
+    const server = this.getServer(type, varName, cache);
 
     const member = parseInt(data.member, 10);
     const varName2 = this.evalMessage(data.varName2, cache);
-    const mem = await this.getMember(member, varName2, cache);
+    const mem = this.getMember(member, varName2, cache);
 
     const reason = this.evalMessage(data.reason, cache);
 

@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Delete Server Data',
   section: 'Data',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/delete_server_data_MOD.js',
-  },
 
   subtitle(data) {
     const servers = ['Current Server', 'Temp Variable', 'Server Variable', 'Global Variable'];
@@ -43,11 +36,11 @@ module.exports = {
     glob.serverChange(document.getElementById('server'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const type = parseInt(data.server, 10);
     const varName = this.evalMessage(data.varName, cache);
-    const server = await this.getServer(type, varName, cache);
+    const server = this.getServer(type, varName, cache);
     const dataName = this.evalMessage(data.dataName, cache);
 
     if (!server) return this.callNextAction(cache);
@@ -58,19 +51,21 @@ module.exports = {
 
   mod(DBM) {
     DBM.Actions['Delete Server Data MOD'] = DBM.Actions['Delete Server Data'];
-
-    Reflect.defineProperty(DBM.DiscordJS.Guild.prototype, 'delData', {
-      value(name) {
-        const { servers } = DBM.Files.data;
-
-        if (servers && servers[this.id]?.[name]) {
-          delete servers[this.id][name];
-          DBM.Files.saveData('servers');
-        } else if (!servers) {
-          delete servers[this.id];
-          DBM.Files.saveData('servers');
-        }
-      },
-    });
+    DBM.DiscordJS.Structures.extend(
+      'Guild',
+      (Guild) =>
+        class extends Guild {
+          delData(name) {
+            const { servers } = DBM.Files.data;
+            if (servers[this.id] && name && servers[this.id][name]) {
+              delete servers[this.id][name];
+              DBM.Files.saveData('servers');
+            } else if (!name) {
+              delete servers[this.id];
+              DBM.Files.saveData('servers');
+            }
+          }
+        },
+    );
   },
 };

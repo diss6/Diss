@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Store Category Info',
   section: 'Channel Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/store_category_info_MOD.js',
-  },
 
   subtitle(data) {
     const categories = ['You cheater!', 'Temp Variable', 'Server Variable', 'Global Variable'];
@@ -158,7 +151,7 @@ module.exports = {
     glob.refreshVariableList(document.getElementById('category'));
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const category = parseInt(data.category, 10);
     const varName = this.evalMessage(data.varName, cache);

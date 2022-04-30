@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Control Permissions',
   section: 'Permission Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/control_permissons_MOD.js',
-  },
 
   subtitle(data) {
     const variables = ['', 'Temp Variable', 'Server Variable', 'Global Variable'];
@@ -315,7 +308,7 @@ module.exports = {
     glob.refreshVariableList(document.getElementById('storage'));
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const { Permissions } = this.getDBM().DiscordJS;
     const storage = parseInt(data.storage, 10);

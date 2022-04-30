@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Set Time Restriction',
   section: 'Other Stuff',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/set_time_restriction_MOD.js',
-  },
 
   subtitle(data) {
     const results = [
@@ -180,7 +173,7 @@ module.exports = {
     glob.onChange(document.getElementById('Measurement'));
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const value = parseInt(this.evalMessage(data.value, cache), 10);
 

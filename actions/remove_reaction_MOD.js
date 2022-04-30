@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Remove Reaction',
   section: 'Reaction Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/remove_reaction_MOD.js',
-  },
 
   subtitle(data) {
     const names = ['Mentioned User', 'Command Author', 'Temp Variable', 'Server Variable', 'Global Variable'];
@@ -51,7 +44,7 @@ module.exports = {
     glob.memberChange(document.getElementById('member'), 'varNameContainer2');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
 
     const reaction = parseInt(data.reaction, 10);
@@ -61,7 +54,7 @@ module.exports = {
 
     const type = parseInt(data.member, 10);
     const varName2 = this.evalMessage(data.varName2, cache);
-    const member = await this.getMember(type, varName2, cache);
+    const member = this.getMember(type, varName2, cache);
 
     if (!rea) return this.callNextAction(cache);
 

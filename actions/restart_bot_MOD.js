@@ -2,13 +2,6 @@
 module.exports = {
   name: 'Restart Bot',
   section: 'Bot Client Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/restart_bot_MOD.js',
-  },
 
   subtitle(data) {
     return `Restarts ${data.filename}`;
@@ -30,7 +23,7 @@ module.exports = {
 
   init() {},
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const filename = this.evalMessage(data.filename, cache);
     this.getDBM().Bot.bot.destroy();

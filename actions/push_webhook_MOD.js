@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Send Message To Webhook',
   section: 'Webhook Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/push_webhook_MOD.js',
-  },
 
   subtitle(data) {
     return `${data.message}`;
@@ -15,7 +8,7 @@ module.exports = {
 
   fields: ['webhook', 'varName', 'message'],
 
-  html(isEvent, data) {
+  html(_isEvent, data) {
     return `
 <div>
   <div style="float: left; width: 35%;">
@@ -37,21 +30,18 @@ module.exports = {
 
   init() {
     const { glob, document } = this;
-
     glob.refreshVariableList(document.getElementById('webhook'));
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const webhook = parseInt(data.webhook, 10);
     const varName = this.evalMessage(data.varName, cache);
     const Mods = this.getMods();
     const wh = Mods.getWebhook(webhook, varName, cache);
     const message = this.evalMessage(data.message, cache);
-    if (!wh) {
-      console.log('Push Webhook ERROR: Unable to load webhook from variable.');
-      return this.callNextAction(cache);
-    }
+
+    if (!wh) return this.callNextAction(cache);
 
     wh.send(message);
     this.callNextAction(cache);

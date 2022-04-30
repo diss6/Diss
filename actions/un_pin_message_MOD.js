@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Un-Pin Message',
   section: 'Messaging',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/un_pin_message_MOD.js',
-  },
 
   subtitle(data) {
     const names = ['Command Message', 'Temp Variable', 'Server Variable', 'Global Variable'];
@@ -38,11 +31,11 @@ module.exports = {
     glob.messageChange(document.getElementById('storage'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const storage = parseInt(data.storage, 10);
     const varName = this.evalMessage(data.varName, cache);
-    const message = await this.getMessage(storage, varName, cache);
+    const message = this.getMessage(storage, varName, cache);
 
     if (Array.isArray(message)) {
       this.callListFunc(message, 'unpin', []).then(() => {

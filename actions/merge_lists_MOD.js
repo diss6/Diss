@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Merge Lists',
   section: 'Lists and Loops',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/merge_lists_MOD.js',
-  },
 
   subtitle() {
     return 'Merge two lists together';
@@ -69,16 +62,16 @@ module.exports = {
     glob.variableChange(document.getElementById('storage3'), 'varNameContainer3');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
 
     const varName = this.evalMessage(data.varName, cache);
     const storage = parseInt(data.storage, 10);
-    const list = await this.getList(storage, varName, cache);
+    const list = this.getList(storage, varName, cache);
 
     const varName2 = this.evalMessage(data.varName2, cache);
     const storage2 = parseInt(data.storage2, 10);
-    const list2 = await this.getList(storage2, varName2, cache);
+    const list2 = this.getList(storage2, varName2, cache);
 
     const result = list.concat(list2);
 

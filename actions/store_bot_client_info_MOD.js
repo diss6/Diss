@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Store Bot Client Info',
   section: 'Bot Client Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/store_bot_client_info_MOD.js',
-  },
 
   subtitle(data) {
     const info = [
@@ -41,10 +34,12 @@ module.exports = {
       'Memory (RAM) Usage in MB',
       "Bots' OS (Process Platform)",
       'CPU Usage in MB',
+      'Average CPU Usage (%)',
+      'CPU Usage (%)',
       "Bots' Directory",
       'Node JS Version',
-      'Total Amount of Commands',
-      'Total Amount of Events',
+      'Amount of Commands',
+      'Amount of Events',
       'Ready At ? [timestamp]',
       'CPU Core Count',
       'Total Memory (GB)',
@@ -58,8 +53,6 @@ module.exports = {
       'Bot Owner ID',
       'Are Commands Case Sensitive?',
       'Last Message ID',
-      'Average CPU Average (1m ,5m, 15m)',
-      'Current CPU Usage',
     ];
     return `Bot Client - ${info[parseInt(data.info, 10)]}`;
   },
@@ -164,7 +157,6 @@ module.exports = {
       <option value="24">Refreshing Uptime in Hours</option>
       <option value="25">Refreshing Uptime in Minutes</option>
       <option value="26">Refreshing Uptime in Seconds</option>
-      <option value="0">Uptime in Milliseconds</option>
     </optgroup>
     <optgroup label="Values">
       <option value="3">Total Amount of Guilds</option>
@@ -232,7 +224,7 @@ module.exports = {
 
   init() {},
 
-  async action(cache) {
+  action(cache) {
     const botClient = this.getDBM().Bot.bot;
     const { Bot } = this.getDBM();
     const os = require('os');
@@ -274,7 +266,7 @@ module.exports = {
         result = botClient.token;
         break;
       case 9: // Voice Connections Amount
-        result = botClient.voice.adapters.size;
+        result = botClient.voice.connections.size;
         break;
       case 10: // Total Amount of Channels
         result = botClient.channels.cache.size;

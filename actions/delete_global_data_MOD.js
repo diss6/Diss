@@ -2,13 +2,6 @@
 module.exports = {
   name: 'Delete Global Data',
   section: 'Data',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/delete_global_data_MOD.js',
-  },
 
   subtitle(data) {
     return `Data : ${data.dataName ? data.dataName : 'All Data'}`;
@@ -28,7 +21,7 @@ module.exports = {
 
   init() {},
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const dataName = this.evalMessage(data.dataName, cache);
     const { Globals } = this.getDBM();

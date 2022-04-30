@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Store User Info',
   section: 'User Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/store_user_info_MOD.js',
-  },
 
   subtitle(data) {
     const users = ['Mentioned User', 'Command Author', 'Temp Variable', 'Server Variable', 'Global Variable'];
@@ -134,12 +127,12 @@ module.exports = {
     glob.memberChange(document.getElementById('user'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const userType = parseInt(data.user, 10);
     const varName = this.evalMessage(data.varName, cache);
     const info = parseInt(data.info, 10);
-    let user = await this.getMember(userType, varName, cache);
+    let user = this.getMember(userType, varName, cache);
     if (!user) return this.callNextAction(cache);
     if (user.user) user = user.user;
 
@@ -155,7 +148,7 @@ module.exports = {
         result = user.username;
         break;
       case 3: // User Status
-        if (user.presence?.status) {
+        if (this.dest(user.presence, 'status')) {
           const { status } = user.presence;
           if (status === 'online') result = 'Online';
           else if (status === 'offline') result = 'Offline';
@@ -177,15 +170,15 @@ module.exports = {
         result = user.lastMessageID;
         break;
       case 7: // User Activities
-        if (user.presence?.activities.length) {
-          const status = user.presence.activities.find((s) => s.type !== 'CUSTOM_STATUS');
-          result = status?.name;
+        if (this.dest(user.presence, 'activities')) {
+          const status = user.presence.activities.filter((s) => s.type !== 'CUSTOM_STATUS');
+          result = status && this.dest(status[0], 'name');
         }
         break;
       case 8: // User Custom Status
-        if (user.presence?.activities.length) {
-          const status = user.presence.activities.find((s) => s.type === 'CUSTOM_STATUS');
-          result = status?.state;
+        if (this.dest(user.presence, 'activities')) {
+          const status = user.presence.activities.filter((s) => this.dest(s, 'type') === 'CUSTOM_STATUS');
+          result = status && this.dest(status[0], 'state');
         }
         break;
       case 9: // User Discriminator
@@ -208,7 +201,7 @@ module.exports = {
       }
       case 14: {
         // User Status
-        const status = user.presence?.clientStatus;
+        const status = this.dest(user.presence, 'clientStatus');
         result = status && Object.keys(status);
         break;
       }

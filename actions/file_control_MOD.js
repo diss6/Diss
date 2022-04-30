@@ -2,13 +2,6 @@ module.exports = {
   name: 'File Control',
   section: 'File Stuff',
   fields: ['input', 'format', 'filename', 'filepath', 'filepath2', 'filetask', 'input2', 'togglestatus'],
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/file_control_MOD.js',
-  },
 
   subtitle(data) {
     const filetasks = ['Create', 'Write', 'Append into', 'Delete', 'Insert into', 'Copy'];
@@ -233,7 +226,7 @@ module.exports = {
     selector.onclick = () => showInput();
   },
 
-  async action(cache) {
+  action(cache) {
     const path = require('path');
     const Mods = this.getMods();
     const fs = Mods.require('fs-extra');
@@ -256,9 +249,7 @@ module.exports = {
       switch (task) {
         case 0: // Create File
           if (fileName === '') break;
-          fs.pathExistsSync(path.join(fpath, fileName))
-            ? console.log('File already exists!')
-            : fs.writeFileSync(fpath, '');
+          fs.writeFileSync(fpath, '');
           break;
         case 1: // Write File
           if (fileName === '') throw new Error('File Name not Provided:');

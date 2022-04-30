@@ -2,13 +2,6 @@ module.exports = {
   name: 'Set Permissions',
 
   section: 'Permission Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/set_permissions_MOD.js',
-  },
 
   subtitle(data) {
     const roles = [
@@ -73,14 +66,14 @@ module.exports = {
     glob.refreshVariableList(document.getElementById('storage2'));
   },
 
-  async action(cache) {
+  action(cache) {
     const data = cache.actions[cache.index];
     const storage = parseInt(data.storage, 10);
     const varName = this.evalMessage(data.varName, cache);
     const storage2 = parseInt(data.storage2, 10);
     const varName2 = this.evalMessage(data.varName2, cache);
 
-    const role = await this.getRole(storage, varName, cache);
+    const role = this.getRole(storage, varName, cache);
     let permissions = this.getVariable(storage2, varName2, cache);
     const reason = this.evalMessage(data.reason, cache);
     const way = parseInt(data.way, 10);

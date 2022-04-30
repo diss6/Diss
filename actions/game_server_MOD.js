@@ -1,13 +1,6 @@
 module.exports = {
   name: 'Store Game Server Info',
   section: 'Other Stuff',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/game_server_MOD.js',
-  },
 
   subtitle(data) {
     const info = [
@@ -282,7 +275,6 @@ module.exports = {
     <option value="teamfactor">Team Factor</option>
     <option value="tf2">Team Fortress 2</option>
     <option value="tfc">Team Fortress Classic</option>
-    <option value="teamspeak3">Teamspeak 3</option>
     <option value="terminus">Terminus</option>
     <option value="terraria">Terraria - TShock (2011)</option>
     <option value="hidden">The Hidden (2005)</option>
@@ -395,7 +387,7 @@ module.exports = {
     glob.variableChange(document.getElementById('storage'), 'varNameContainer');
   },
 
-  async action(cache) {
+  action(cache) {
     const { Actions } = this.getDBM();
     const data = cache.actions[cache.index];
     const info = parseInt(data.info, 10);

@@ -1,13 +1,6 @@
 module.exports = {
   name: 'YouTube Search',
   section: 'Audio Control',
-  meta: {
-    version: '2.0.11',
-    preciseCheck: false,
-    author: 'DBM Mods',
-    authorUrl: 'https://github.com/dbm-network/mods',
-    downloadURL: 'https://github.com/dbm-network/mods/blob/master/actions/youtube_search_MOD.js',
-  },
 
   subtitle(data) {
     const videoInfo = [
@@ -18,10 +11,9 @@ module.exports = {
       'Video Channel ID',
       'Video Channel URL',
       'Video Channel Name',
-      'Video Channel Avatar URL',
       'Video Thumbnail URL',
       'Video Duration',
-      'Video Publish Date',
+      'Video Publish Data',
       'Video Views',
       'Video is live?',
     ];
@@ -361,7 +353,7 @@ module.exports = {
           const storage = parseInt(data.storage, 10);
           const varName = this.evalMessage(data.varName, cache);
           this.storeValue(result, storage, varName, cache);
-          return this.callNextAction(cache);
+          this.callNextAction(cache);
         }
         break;
       }
